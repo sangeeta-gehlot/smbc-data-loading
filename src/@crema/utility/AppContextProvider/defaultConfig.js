@@ -220,7 +220,7 @@ const defaultConfig = {
   },
   themeStyle: ThemeStyle.STANDARD,
   themeMode: ThemeMode.LIGHT,
-  navStyle: NavStyle.DEFAULT,
+  navStyle: NavStyle.DRAWER,
   layoutType: LayoutType.FULL_WIDTH,
   footerType: FooterType.FLUID,
   headerType: HeaderType.FIXED,

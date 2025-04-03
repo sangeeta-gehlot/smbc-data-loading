@@ -2,8 +2,6 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
-import {Typography} from '@mui/material';
-import {Fonts} from 'shared/constants/AppEnums';
 
 const AuthWrapper = ({children}) => {
   return (
@@ -18,7 +16,7 @@ const AuthWrapper = ({children}) => {
     >
       <Card
         sx={{
-          maxWidth: 900,
+          maxWidth: 500,
           minHeight: {xs: 320, sm: 450},
           width: '100%',
           overflow: 'hidden',
@@ -28,7 +26,7 @@ const AuthWrapper = ({children}) => {
       >
         <Box
           sx={{
-            width: {xs: '100%', sm: '50%', lg: '40%'},
+            width: {xs: '100%', sm: '50%', lg: '100%'},
             padding: {xs: 5, lg: 10},
             display: 'flex',
             flexDirection: 'column',
@@ -37,41 +35,7 @@ const AuthWrapper = ({children}) => {
         >
           {children}
         </Box>
-        <Box
-          sx={{
-            width: {xs: '100%', sm: '50%', lg: '60%'},
-            position: 'relative',
-            padding: {xs: 5, lg: 10},
-            display: {xs: 'none', sm: 'flex'},
-            alignItems: {sm: 'center'},
-            justifyContent: {sm: 'center'},
-            flexDirection: {sm: 'column'},
-            backgroundColor: (theme) => theme.palette.grey[900],
-            color: (theme) => theme.palette.common.white,
-            fontSize: 14,
-          }}
-        >
-          <Box
-            sx={{
-              maxWidth: 320,
-            }}
-          >
-            <Typography
-              component='h2'
-              sx={{
-                fontWeight: Fonts.BOLD,
-                fontSize: 30,
-                mb: 4,
-              }}
-            >
-              Welcome to Crema!
-            </Typography>
-            <Typography>
-              Crema is purely based on Material ui components and follows
-              Material ui guidelines.
-            </Typography>
-          </Box>
-        </Box>
+        
       </Card>
     </Box>
   );

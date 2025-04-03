@@ -4,7 +4,7 @@ import AppContentView from '@crema/core/AppContentView';
 import AppFixedFooter from './AppFixedFooter';
 import AppHeader from './AppHeader';
 import {useLayoutContext} from '../../../utility/AppContextProvider/LayoutContextProvider';
-import AppThemeSetting from '../../AppThemeSetting';
+// import AppThemeSetting from '../../AppThemeSetting';
 import DrawerLayoutWrapper from './DrawerLayoutWrapper';
 import MainContent from './MainContent';
 import {LayoutType} from 'shared/constants/AppEnums';
@@ -35,7 +35,7 @@ const DrawerLayout = () => {
           <AppContentView />
           <AppFixedFooter />
         </MainContent>
-        <AppThemeSetting />
+        {/* <AppThemeSetting /> */}
       </DrawerLayoutWrapper>
     </DrawerLayoutContainer>
   );

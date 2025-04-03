@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const jwtAxios = axios.create({
   // baseURL: 'http://localhost:9090/api/', //YOUR_API_URL HERE
-  baseURL: 'http://192.168.50.158:9090/api/', //YOUR_API_URL HERE (DEV URL)
+  baseURL: 'http://192.168.50.7:9090/api/', //YOUR_API_URL HERE (DEV URL)
   headers: {
     'Content-Type': 'application/json',
   },

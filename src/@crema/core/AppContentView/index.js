@@ -33,7 +33,7 @@ const AppContentView = ({sxStyle}) => {
           display: 'flex',
           flex: 1,
           flexDirection: 'column',
-          p: {xs: 5, md: 7.5, xl: 12.5},
+          // p: {xs: 5, md: 7.5, xl: 12.5},
           ...sxStyle,
         }}
         className='app-content'

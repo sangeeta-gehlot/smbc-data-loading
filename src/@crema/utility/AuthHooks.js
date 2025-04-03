@@ -1,5 +1,5 @@
 // ForJWT Auth
-/*import { getUserFromJwtAuth } from "./helper/AuthHelper";
+import { getUserFromJwtAuth } from "./helper/AuthHelper";
 import {
   useJWTAuth,
   useJWTAuthActions,
@@ -22,38 +22,38 @@ export const useAuthMethod = () => {
     logout,
     signUpUser,
   };
-};*/
+};
 //For Firebase Auth
-import {
-  useFirebase,
-  useFirebaseActions,
-} from '../services/auth/firebase/FirebaseAuthProvider';
-import {getUserFromFirebase} from './helper/AuthHelper';
+// import {
+//   useFirebase,
+//   useFirebaseActions,
+// } from '../services/auth/firebase/FirebaseAuthProvider';
+// import {getUserFromFirebase} from './helper/AuthHelper';
 
-export const useAuthUser = () => {
-  const {user, isAuthenticated, isLoading} = useFirebase();
-  return {
-    isLoading,
-    isAuthenticated,
-    user: getUserFromFirebase(user),
-  };
-};
+// export const useAuthUser = () => {
+//   const {user, isAuthenticated, isLoading} = useFirebase();
+//   return {
+//     isLoading,
+//     isAuthenticated,
+//     user: getUserFromFirebase(user),
+//   };
+// };
 
-export const useAuthMethod = () => {
-  const {
-    logInWithEmailAndPassword,
-    registerUserWithEmailAndPassword,
-    logInWithPopup,
-    logout,
-  } = useFirebaseActions();
+// export const useAuthMethod = () => {
+//   const {
+//     logInWithEmailAndPassword,
+//     registerUserWithEmailAndPassword,
+//     logInWithPopup,
+//     logout,
+//   } = useFirebaseActions();
 
-  return {
-    logInWithEmailAndPassword,
-    registerUserWithEmailAndPassword,
-    logInWithPopup,
-    logout,
-  };
-};
+//   return {
+//     logInWithEmailAndPassword,
+//     registerUserWithEmailAndPassword,
+//     logInWithPopup,
+//     logout,
+//   };
+// };
 
 /*
 // For AWS Auth

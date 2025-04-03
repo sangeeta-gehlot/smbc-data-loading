@@ -1,7 +1,7 @@
 import React from 'react';
 import AppSidebar from './AppSidebar';
 import AppContentView from '@crema/core/AppContentView';
-import AppThemeSetting from '../../AppThemeSetting';
+// import AppThemeSetting from '../../AppThemeSetting';
 import AppHeader from './AppHeader';
 import clsx from 'clsx';
 import Box from '@mui/material/Box';
@@ -33,7 +33,7 @@ const UserHeader = () => {
           <AppContentView />
           <AppFixedFooter />
         </Box>
-        <AppThemeSetting />
+        {/* <AppThemeSetting /> */}
       </UserHeaderWrapper>
     </UserHeaderContainer>
   );
