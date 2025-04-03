@@ -1,27 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import SearchIcon from '@mui/icons-material/Search';
+// import clsx from 'clsx';
+// import SearchIcon from '@mui/icons-material/Search';
 import {
-  SearchIconBox,
-  SearchIconWrapper,
-  SearchInputBase,
+  // SearchIconBox,
+  // SearchIconWrapper,
+  // SearchInputBase,
   SearchWrapper,
 } from './index.style';
 
 const AppSearch = ({
-  placeholder,
+  // placeholder,
   iconPosition,
-  align,
-  overlap,
-  onlyIcon,
-  disableFocus,
-  iconStyle,
+  // align,
+  // overlap,
+  // onlyIcon,
+  // disableFocus,
+  // iconStyle,
   ...rest
 }) => {
   return (
     <SearchWrapper sx={rest.sx} iconPosition={iconPosition}>
-      <SearchIconBox
+      {/* <SearchIconBox
         align={align}
         className={clsx(
           'searchRoot',
@@ -43,7 +43,7 @@ const AppSearch = ({
           placeholder={placeholder || 'Search…'}
           inputProps={{'aria-label': 'search'}}
         />
-      </SearchIconBox>
+      </SearchIconBox> */}
     </SearchWrapper>
   );
 };

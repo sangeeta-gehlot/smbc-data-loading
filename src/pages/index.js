@@ -5,14 +5,15 @@ import {initialUrl} from 'shared/constants/AppConst';
 import {authRouteConfig} from './auth';
 import Error403 from './errorPages/Error403';
 import {errorPagesConfigs} from './errorPages';
-// import { smbcConfigs } from './Smbc';
+import { smbcConfigs } from './Smbc';
+import { accountPagesConfigs } from './account';
 
 const authorizedStructure = {
-  fallbackPath: '/dataLoading',
+  fallbackPath: '/signin',
   unAuthorizedComponent: <Error403 />,
   routes: [
     // ...dashBoardConfigs,
-    // ...accountPagesConfigs,
+    ...accountPagesConfigs,
     // ...appsConfig,
     // ...thirdPartyConfigs,
     // ...extraPagesConfigs,
@@ -20,7 +21,7 @@ const authorizedStructure = {
     // ...muiComponentConfigs,
     // ...userPagesConfig,
     // ...userListConfig,
-    // ...smbcConfigs
+    ...smbcConfigs
 
   ],
 };

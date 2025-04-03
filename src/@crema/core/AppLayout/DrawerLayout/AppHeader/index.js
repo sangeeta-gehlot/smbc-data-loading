@@ -1,25 +1,34 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import AppLngSwitcher from '@crema/core/AppLngSwitcher';
+// import AppLngSwitcher from '@crema/core/AppLngSwitcher';
 import Box from '@mui/material/Box';
-import AppSearchBar from '@crema/core/AppSearchBar';
-import Hidden from '@mui/material/Hidden';
-import IconButton from '@mui/material/IconButton';
-import {toggleNavCollapsed} from 'redux/actions';
-import MenuIcon from '@mui/icons-material/Menu';
-import {useDispatch} from 'react-redux';
-import AppMessages from '../../../AppMessages';
-import AppNotifications from '../../../AppNotifications';
+// import AppSearchBar from '@crema/core/AppSearchBar';
+// import Hidden from '@mui/material/Hidden';
+// import IconButton from '@mui/material/IconButton';
+// import {toggleNavCollapsed} from 'redux/actions';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import {useDispatch} from 'react-redux';
+// import AppMessages from '../../../AppMessages';
+// import AppNotifications from '../../../AppNotifications';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
+// import MoreVertIcon from '@mui/icons-material/MoreVert';
+// import AppTooltip from '../../../AppTooltip';
+// import {alpha} from '@mui/material/styles';
+import AppLogo from '../../components/AppLogo';
+import { Fonts } from 'shared/constants/AppEnums';
+import { useAuthMethod, useAuthUser } from '@crema/utility/AuthHooks';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import AppTooltip from '../../../AppTooltip';
-import {alpha} from '@mui/material/styles';
-import AppLogo from '../../components/AppLogo';
+// import { useNavigate } from 'react-router-dom';
 
 const AppHeader = () => {
+  const {logout} = useAuthMethod();
+  const {user} = useAuthUser();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  // const navigate = useNavigate();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -28,7 +37,17 @@ const AppHeader = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const dispatch = useDispatch();
+
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
+  // const dispatch = useDispatch();
 
   return (
     <AppBar
@@ -50,7 +69,7 @@ const AppHeader = () => {
           paddingRight: {xs: 5, md: 7.5},
         }}
       >
-        <IconButton
+        {/* <IconButton
           sx={{
             color: 'text.secondary',
           }}
@@ -67,7 +86,7 @@ const AppHeader = () => {
               height: 35,
             }}
           />
-        </IconButton>
+        </IconButton> */}
         <Box
           sx={{
             '& .logo-text': {
@@ -83,7 +102,7 @@ const AppHeader = () => {
             flexGrow: 1,
           }}
         />
-        <Box
+        {/* <Box
           sx={{
             minHeight: 40,
             position: 'relative',
@@ -95,13 +114,13 @@ const AppHeader = () => {
           }}
         >
           <AppSearchBar iconPosition='right' placeholder='Search…' />
-        </Box>
+        </Box> */}
 
-        <Box sx={{ml: 4}}>
+        {/* <Box sx={{ml: 4}}>
           <AppLngSwitcher iconOnly={true} tooltipPosition='bottom' />
-        </Box>
+        </Box> */}
 
-        <Box sx={{ml: 4}}>
+        {/* <Box sx={{ml: 4}}>
           <Hidden smDown>
             <Box
               sx={{
@@ -187,7 +206,64 @@ const AppHeader = () => {
             </MenuItem>
             <MenuItem>Setting</MenuItem>
           </Menu>
-        </Box>
+        </Box> */}
+        <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Box
+              sx={{
+                mb: 0,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                fontSize: 16,
+                fontWeight: Fonts.MEDIUM,
+                color: 'inherit',
+              }}
+              component='span'
+            >
+              {user.displayName ? user.displayName : 'Admin '}
+            </Box>
+            <Box
+              sx={{
+                ml: 3,
+                color: 'inherit',
+                display: 'flex',
+              }}
+              onClick={handleClick}
+            >
+              <ExpandMoreIcon />
+            </Box>
+          </Box>
+          <Menu
+        id='simple-menu'
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        {/* <MenuItem
+          onClick={() => {
+            handleClose();
+            navigate('/my-profile');
+          }}
+        >
+          My account
+        </MenuItem> */}
+        <MenuItem onClick={logout}>Logout</MenuItem>
+      </Menu>
       </Toolbar>
     </AppBar>
   );

@@ -37,7 +37,7 @@ const MenuColorCell = ({sidebarColors}) => {
       }}
       onClick={() => updateSidebarColorSet(sidebarColors)}
     >
-      {navStyle === NavStyle.DEFAULT ? (
+      {navStyle === NavStyle.DRAWER ? (
         <Box
           sx={{
             width: '100%',
