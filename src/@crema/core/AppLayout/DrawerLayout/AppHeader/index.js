@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 // import AppLngSwitcher from '@crema/core/AppLngSwitcher';
@@ -25,10 +25,24 @@ import MenuItem from '@mui/material/MenuItem';
 // import { useNavigate } from 'react-router-dom';
 
 const AppHeader = () => {
-  const {logout} = useAuthMethod();
-  const {user} = useAuthUser();
+  const { logout } = useAuthMethod();
+  const { user } = useAuthUser();
   const [anchorEl, setAnchorEl] = React.useState(null);
   // const navigate = useNavigate();
+  const [currDate, setCurrDate] = useState('');
+  const [currTime, setCurrTime] = useState('');
+
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      setCurrDate(now.toLocaleDateString());
+      setCurrTime(now.toLocaleTimeString());
+    };
+
+    updateDateTime();
+    const intervalId = setInterval(updateDateTime, 1000);
+    return () => clearInterval(intervalId); 
+  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,33 +78,15 @@ const AppHeader = () => {
       <Toolbar
         sx={{
           boxSizing: 'border-box',
-          minHeight: {xs: 56, sm: 70},
-          paddingLeft: {xs: 5},
-          paddingRight: {xs: 5, md: 7.5},
+          minHeight: { xs: 56, sm: 70 },
+          paddingLeft: { xs: 5 },
+          paddingRight: { xs: 5, md: 7.5 },
         }}
       >
-        {/* <IconButton
-          sx={{
-            color: 'text.secondary',
-          }}
-          edge='start'
-          className='menu-btn'
-          color='inherit'
-          aria-label='open drawer'
-          onClick={() => dispatch(toggleNavCollapsed())}
-          size='large'
-        >
-          <MenuIcon
-            sx={{
-              width: 35,
-              height: 35,
-            }}
-          />
-        </IconButton> */}
         <Box
           sx={{
             '& .logo-text': {
-              display: {xs: 'none', sm: 'block'},
+              display: { xs: 'none', sm: 'block' },
             },
           }}
         >
@@ -102,169 +98,70 @@ const AppHeader = () => {
             flexGrow: 1,
           }}
         />
-        {/* <Box
-          sx={{
-            minHeight: 40,
-            position: 'relative',
-            '& .searchRoot': {
-              position: {xs: 'absolute', sm: 'relative'},
-              right: {xs: 0, sm: 'auto'},
-              top: {xs: 0, sm: 'auto'},
-            },
-          }}
-        >
-          <AppSearchBar iconPosition='right' placeholder='Search…' />
-        </Box> */}
-
-        {/* <Box sx={{ml: 4}}>
-          <AppLngSwitcher iconOnly={true} tooltipPosition='bottom' />
-        </Box> */}
-
-        {/* <Box sx={{ml: 4}}>
-          <Hidden smDown>
+        <div>
+          <div>
             <Box
               sx={{
-                position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
-                marginLeft: -2,
-                marginRight: -2,
+                justifyContent: 'end',
               }}
             >
               <Box
                 sx={{
-                  px: 1.85,
+                  mb: 0,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  fontSize: 16,
+                  fontWeight: Fonts.MEDIUM,
+                  color: 'inherit',
                 }}
+                component='span'
               >
-                <AppNotifications />
+                {user.displayName ? user.displayName : 'Admin '}
               </Box>
               <Box
                 sx={{
-                  px: 1.85,
+                  ml: 3,
+                  color: 'inherit',
+                  display: 'flex',
                 }}
+                onClick={handleClick}
               >
-                <AppMessages />
+                <ExpandMoreIcon />
               </Box>
             </Box>
-          </Hidden>
-
-          <Hidden smUp>
-            <Box
-              sx={{
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                marginLeft: -2,
-                marginRight: -2,
+            <Menu
+              id='simple-menu'
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
               }}
             >
-              <Box
-                sx={{
-                  px: 1.85,
-                }}
-              >
-                <AppTooltip title='More'>
-                  <IconButton
-                    sx={{
-                      borderRadius: '50%',
-                      width: 40,
-                      height: 40,
-                      color: (theme) => theme.palette.text.secondary,
-                      backgroundColor: (theme) =>
-                        theme.palette.background.default,
-                      border: 1,
-                      borderColor: 'transparent',
-                      '&:hover, &:focus': {
-                        color: (theme) => theme.palette.text.primary,
-                        backgroundColor: (theme) =>
-                          alpha(theme.palette.background.default, 0.9),
-                        borderColor: (theme) =>
-                          alpha(theme.palette.text.secondary, 0.25),
-                      },
-                    }}
-                    onClick={handleClick}
-                    size='large'
-                  >
-                    <MoreVertIcon />
-                  </IconButton>
-                </AppTooltip>
-              </Box>
-            </Box>
-          </Hidden>
-          <Menu
-            id='simple-menu'
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem>
-              <AppNotifications isMenu />
-            </MenuItem>
-            <MenuItem>
-              <AppMessages isMenu />
-            </MenuItem>
-            <MenuItem>Setting</MenuItem>
-          </Menu>
-        </Box> */}
-        <Box
+              <MenuItem onClick={logout}>Logout</MenuItem>
+            </Menu>  </div>
+          <Box
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
+              mb: 2,
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              color: 'inherit',
             }}
           >
-            <Box
-              sx={{
-                mb: 0,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                fontSize: 16,
-                fontWeight: Fonts.MEDIUM,
-                color: 'inherit',
-              }}
-              component='span'
-            >
-              {user.displayName ? user.displayName : 'Admin '}
-            </Box>
-            <Box
-              sx={{
-                ml: 3,
-                color: 'inherit',
-                display: 'flex',
-              }}
-              onClick={handleClick}
-            >
-              <ExpandMoreIcon />
-            </Box>
-          </Box>
-          <Menu
-        id='simple-menu'
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-      >
-        {/* <MenuItem
-          onClick={() => {
-            handleClose();
-            navigate('/my-profile');
-          }}
-        >
-          My account
-        </MenuItem> */}
-        <MenuItem onClick={logout}>Logout</MenuItem>
-      </Menu>
+            <b>Login Time:</b>({currDate}  {currTime})
+          </Box></div>
+
       </Toolbar>
+
     </AppBar>
   );
 };
