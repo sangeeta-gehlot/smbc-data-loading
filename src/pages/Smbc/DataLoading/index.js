@@ -181,13 +181,14 @@ const DataLoading = () => {
               boxShadow: 'rgb(0 0 0 / 16%) 0px 6px 17px 5px',
               background: '#fff',
               color: "red",
-              fontSize: "18px",
+              fontSize: "17px",
               marginTop: "40px",
             }}
           >
-            Note- Please select the data for which you want to run Data Loading.<br/>
+            <p style = {{color:"rgb(38 137 169)"}}>
+            <span style={{color:"red"}}>Note-</span> Please select the data for which you want to run Data Loading.<br/>
             This will only Pull the data from LTRDB.<br/>
-            For GSTR Data creation go to GST Middleware- DataLoading Run Option.
+            For GSTR Data creation go to GST Middleware- DataLoading Run Option.</p>
           </Grid>
         </Card>
 
