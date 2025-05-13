@@ -35,13 +35,17 @@ const AppHeader = () => {
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
-      setCurrDate(now.toLocaleDateString());
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      const formattedDate = `${month}/${day}/${year}`;
+      setCurrDate(formattedDate);
       setCurrTime(now.toLocaleTimeString());
     };
 
     updateDateTime();
     const intervalId = setInterval(updateDateTime, 1000);
-    return () => clearInterval(intervalId); 
+    return () => clearInterval(intervalId);
   }, []);
 
   const handleClick = (event) => {
