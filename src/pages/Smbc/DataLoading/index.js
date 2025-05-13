@@ -188,7 +188,7 @@ const DataLoading = () => {
             <p style = {{color:"rgb(38 137 169)"}}>
             <span style={{color:"red"}}>Note-</span> Please select the date for which you want to run Data Loading.<br/>
             This will only Pull the data from LTRDB.<br/>
-            For GSTR Data creation go to GST Middleware- Data Loading Run Option.</p>
+            For GSTR Data creation go to GST Middleware- Data Loading Run Option. </p>
           </Grid>
         </Card>
 
